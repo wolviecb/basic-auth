@@ -14,7 +14,8 @@ import (
 	"github.com/wolviecb/basic-auth/crypt/common"
 )
 
-var errKeyMismatch = errors.New("hashed value is not the hash of the given password")
+// ErrKeyMismatch set the the authentication error message
+var ErrKeyMismatch = errors.New("hashed value is not the hash of the given password")
 
 // Crypter is the common interface implemented by all crypt functions.
 type Crypter interface {
@@ -29,7 +30,7 @@ type Crypter interface {
 
 	// Verify compares a hashed key with its possible key equivalent.
 	// Returns nil on success, or an error on failure; if the hashed key is
-	// diffrent, the error is "errKeyMismatch".
+	// diffrent, the error is "ErrKeyMismatch".
 	Verify(hashedKey string, key []byte) error
 
 	// Cost returns the hashing cost (in rounds) used to create the given hashed
