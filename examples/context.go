@@ -1,4 +1,5 @@
 // +build ignore
+// (C) Modifications copyright 2019, Tom Andrade <wolvie@gmail.com>
 
 /*
  Example application using NewContext/FromContext
@@ -21,7 +22,7 @@ import (
 func secret(user, realm string) string {
 	if user == "john" {
 		// password is "hello"
-		return "b98e16cbc3d01734b264adba7baa3bf9"
+		return "$apr1$Xfu5Jqwg$DYvBqzdcW84tnuq5SbnZE/"
 	}
 	return ""
 }
@@ -54,7 +55,7 @@ func authenticatedHandler(a auth.AuthenticatorInterface, h contextHandler) http.
 }
 
 func main() {
-	authenticator := auth.NewDigestAuthenticator("example.com", secret)
+	authenticator := auth.NewBasicAuthenticator("example.com", secret)
 	http.Handle("/", authenticatedHandler(authenticator, contextHandlerFunc(handle)))
 	http.ListenAndServe(":8080", nil)
 }

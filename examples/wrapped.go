@@ -1,4 +1,5 @@
 // +build ignore
+// (C) Modifications copyright 2019, Tom Andrade <wolvie@gmail.com>
 
 /*
  Example demonstrating how to wrap an application which is unaware of
@@ -21,7 +22,7 @@ import (
 func secret(user, realm string) string {
 	if user == "john" {
 		// password is "hello"
-		return "$1$dlPL2MqE$oQmn16q49SqdmhenQuNgs1"
+		return "$apr1$Xfu5Jqwg$DYvBqzdcW84tnuq5SbnZE/"
 	}
 	return ""
 }
