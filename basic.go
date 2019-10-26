@@ -1,7 +1,9 @@
+// (C) Modifications copyright 2019, Tom Andrade <wolvie@gmail.com>
+
+// Package auth is a implementation of HTTP Basic in Go language.
 package auth
 
 import (
-	"bytes"
 	"crypto/sha1"
 	"crypto/subtle"
 	"encoding/base64"
@@ -9,6 +11,10 @@ import (
 	"net/http"
 	"strings"
 
+	"github.com/wolviecb/basic-auth/crypt"
+	// Package apr1_crypt implements the standard Unix MD5-crypt algorithm created
+	// by Poul-Henning Kamp for FreeBSD, and modified by the Apache project.
+	_ "github.com/wolviecb/basic-auth/crypt/apr1crypt"
 	"golang.org/x/crypto/bcrypt"
 	"golang.org/x/net/context"
 )
@@ -104,15 +110,11 @@ func compareShaHashAndPassword(hashedPassword, password []byte) error {
 }
 
 func compareMD5HashAndPassword(hashedPassword, password []byte) error {
-	parts := bytes.SplitN(hashedPassword, []byte("$"), 4)
-	if len(parts) != 4 {
+	ap := crypt.APR1.New()
+	if err := ap.Verify(string(hashedPassword), password); err != nil {
 		return errMismatchedHashAndPassword
 	}
-	magic := []byte("$" + string(parts[1]) + "$")
-	salt := parts[2]
-	if subtle.ConstantTimeCompare(hashedPassword, MD5Crypt(password, salt, magic)) != 1 {
-		return errMismatchedHashAndPassword
-	}
+
 	return nil
 }
 
