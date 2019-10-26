@@ -1,6 +1,8 @@
 HTTP Authentication implementation in Go
 ========================================
 
+[![Build Status](https://travis-ci.com/wolviecb/basic-auth.svg?branch=master)](https://travis-ci.com/wolviecb/basic-auth) [![codecov](https://codecov.io/gh/wolviecb/basic-auth/branch/master/graph/badge.svg)](https://codecov.io/gh/wolviecb/basic-auth)
+
 This is an implementation of HTTP Basic in Go language. Which is basically a mash-up of [abbot/go-http-auth](https://github.com/abbot/go-http-auth) and [GehirnInc/crypt](https://github.com/GehirnInc/crypt)
 
 Features
