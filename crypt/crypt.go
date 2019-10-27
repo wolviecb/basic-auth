@@ -30,7 +30,7 @@ type Crypter interface {
 
 	// Verify compares a hashed key with its possible key equivalent.
 	// Returns nil on success, or an error on failure; if the hashed key is
-	// diffrent, the error is "ErrKeyMismatch".
+	// different, the error is "ErrKeyMismatch".
 	Verify(hashedKey string, key []byte) error
 
 	// Cost returns the hashing cost (in rounds) used to create the given hashed
@@ -52,8 +52,10 @@ type Crypter interface {
 type Crypt uint
 
 const (
+	// APR1 is the prefix for a apr1 hashed password
 	APR1 Crypt = 1 + iota // import github.com/wolviecb/basic-auth/crypt/apr1_crypt
-	MD5                   // import github.com/wolviecb/basic-auth/crypt/md5crypt
+	// MD5 is the prefix for a md5 hashed password
+	MD5 // import github.com/wolviecb/basic-auth/crypt/md5crypt
 	maxCrypt
 )
 

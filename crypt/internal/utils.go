@@ -13,6 +13,7 @@ var (
 	cleanBytes = make([]byte, cleanBytesLen)
 )
 
+// CleanSensitiveData clean sensitive bytes from bs
 func CleanSensitiveData(b []byte) {
 	l := len(b)
 
@@ -25,6 +26,8 @@ func CleanSensitiveData(b []byte) {
 	}
 }
 
+// RepeatByteSequence return a []byte with copies []byte sequences
+// from input of size length
 func RepeatByteSequence(input []byte, length int) []byte {
 	var (
 		sequence = make([]byte, length)

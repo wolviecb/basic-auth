@@ -18,7 +18,7 @@ func TestHtpasswdFile(t *testing.T) {
 	}
 	passwd = secrets("nosuchuser", "blah")
 	if passwd != "" {
-		t.Fatal("Got passwd for non-existant user:", passwd)
+		t.Fatal("Got passwd for non-existent user:", passwd)
 	}
 }
 
