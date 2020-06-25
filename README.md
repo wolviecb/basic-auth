@@ -27,7 +27,7 @@ This is a complete working example for Basic auth:
             "fmt"
             "net/http"
 
-            auth "github.com/woliecb/basic-auth"
+            auth "github.com/wolviecb/basic-auth"
     )
 
     func Secret(user, realm string) string {
